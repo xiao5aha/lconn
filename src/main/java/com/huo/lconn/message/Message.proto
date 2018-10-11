@@ -1,0 +1,103 @@
+syntax = "proto3";
+package message;
+option java_package = "com.huo.lconn.message";
+option java_outer_classname = "Message";
+
+//心跳
+message HeartBeat {
+	 int32 requestId = 1 ;   //4个字节长度的消息头
+}
+
+//业务端推送的消息
+message Publish {
+     int32 requestId = 1;      //4个字节长度的消息头
+     int32 productCode=2;     //产品标识:表示是哪个产品
+     string topic=3;        //分组名称:要把消息发送到哪个组
+     bytes body=4;            //消息内容:发送的真正的消息
+	 PushType pushType=5; //推送消息的类型 单推还是群推
+     string deviceId=6;         // 设备ID
+     string accountId=7;
+     int64 expiry=8;      
+}
+//签名后的认证消息
+message AuthBackend {
+     int32 requestId = 1 ;
+     int32 productCode =2;
+     string authToken = 3 ;    //签名后的认证消息
+}
+
+//client
+//requestId用于唯一标识一次请求,同一个tcp连接要使用同一个序列生成器
+message RegDev {
+     int32 requestId =1 ;    
+     int32 productCode=2;   //产品标识:表示是哪个产品
+     string deviceId = 3 ;   //设备id ,表示一台设备
+     DevType devType = 4;    //设备类型
+     string token = 5;     //后台校验码
+}
+
+//未注册的设备发该消息会返回错误
+message Subscribe {
+     int32 requestId=1;
+     string topic = 2;
+     SubType  subType= 3;  //订阅和取消订阅两种类型
+     PushType pushType=6; //订阅消息的类型，如果订阅的话
+     string accountId=4;
+    
+}
+
+// 查询消息是否送达
+message Query {
+     int32 requestId = 1;
+     int32 productCode=2;       //产品标识:表示是哪个产品
+     string topic=3;            //分组名称:要把消息发送到哪个组
+	 PushType pushType=4;       //推送消息的类型 单推还是群推
+     string deviceId=5;         // 设备ID
+     string accountId=6;        // 账号ID
+}
+//订阅还是取消订阅
+enum SubType {
+    SUB = 0;
+    UNSUB = 2;
+}
+//设备类型DeviceType
+enum DevType {
+    IOS =0 ; 
+    ANDROID = 2;
+    WP = 3;
+    WEB = 4;
+}
+//订阅消息的类型
+enum PushType {
+	GROUP = 0;
+	SPECIAL = 2;
+	MULTI = 3;
+}
+
+
+//server
+
+
+//发送给client的消息
+message RetMsg {
+     bytes body=1;
+     string topic=2;
+     PushType pushType=3;
+}
+
+//对收到请求的响应
+message Response {
+     int32 requestId=1;
+     RetCode retCode=2;
+	 string rightHost=3;
+     int32 sendNum = 4;
+}
+
+// 错误码
+enum RetCode {
+    SUCCESS =0;
+    FAIL=2;
+    CACHED=3;
+    PARAM_ERR=4;
+}
+

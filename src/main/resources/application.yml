@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: lconn
+  redis:
+    host: 192.168.99.100
+    port: 6379
+    timeout: 5000ms
+    database: 0
+  datasource:
+    druid:
+      db-type: mysql
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://192.168.99.100:3306/lconn?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&useSSL=true
+      username: root
+      password: root
+      initial-size: 2
+      min-idle: 2
+      max-active: 10
+      max-wait: 60000
+      web-stat-filter:
+        enabled: true
+        url-pattern: "/*"
+        exclusions: "*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*"
+      stat-view-servlet:
+        url-pattern: "/druid/*"
+        allow: 127.0.0.1
+        login-password: admin
+        login-username: admin
+  zookeeper:
+    server: 192.168.99.100:2181
+
+configs:
+  topic-expire: 7
+  message-expire: 1
+  node-expire: 10
+  resub_time: 1
+  node_connect_port: 7020
+
