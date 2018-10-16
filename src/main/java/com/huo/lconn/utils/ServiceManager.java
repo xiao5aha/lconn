@@ -1,5 +1,6 @@
 package com.huo.lconn.utils;
 
+import com.huo.lconn.cache.rediscache.blacklist.BlackListService;
 import com.huo.lconn.cache.rediscache.message.MessageCacheService;
 import com.huo.lconn.channel.DelegateChannelService;
 import com.huo.lconn.node.DelegateNodeService;
@@ -19,6 +20,7 @@ public class ServiceManager {
     public static DelegateNodeService delegateNodeService;
     public static TopicService topicService;
     public static MessageCacheService messageCacheService;
+    public static BlackListService blackListService;
 
     @Autowired
     public void setDelegateChannelService(DelegateChannelService delegateChannelService) {
@@ -38,5 +40,10 @@ public class ServiceManager {
     @Autowired
     public void setMessageCacheService(MessageCacheService messageCacheService) {
         ServiceManager.messageCacheService = messageCacheService;
+    }
+
+    @Autowired
+    public void setBlackListService(BlackListService blackListService) {
+        ServiceManager.blackListService = blackListService;
     }
 }

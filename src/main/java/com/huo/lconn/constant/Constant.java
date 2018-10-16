@@ -2,6 +2,7 @@ package com.huo.lconn.constant;
 
 import io.netty.util.AttributeKey;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -9,9 +10,6 @@ import java.util.Set;
  * @CreateDate: 2018/10/11 16:27
  */
 public final class Constant {
-    private Constant() {
-    }
-
     public static AttributeKey<Boolean> AUTH_FLAG = AttributeKey.valueOf("AUTH_FLAG");
     public static AttributeKey<Integer> PRODUCT_CODE = AttributeKey.valueOf("PRODUCT_CODE");
     public static AttributeKey<Long> START_TIME = AttributeKey.valueOf("START_TIME");
@@ -20,4 +18,5 @@ public final class Constant {
     public static AttributeKey<Set<String>> GROUP_TOPIC_SET = AttributeKey.valueOf("GROUP_TOPIC_SET");
     public static AttributeKey<Set<String>> MULTI_TOPIC_SET = AttributeKey.valueOf("MULTI_TOPIC_SET");
     public static AttributeKey<Set<String>> SPECIAL_TOPIC_SET = AttributeKey.valueOf("SPECIAL_TOPIC_SET");
+    public static final String BLACK_LIST = "black_list";
 }

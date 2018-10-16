@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  * @CreateDate: 2018/9/26 11:18
  */
 @Configuration
-public class CuratorConfig {
+public class ZookeeperConfig {
 
     @Value("${spring.zookeeper.server}")
     public String server;
