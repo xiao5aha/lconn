@@ -1,5 +1,6 @@
 package com.huo.lconn.node;
 
+import com.alibaba.druid.util.StringUtils;
 import com.huo.lconn.cache.localcache.LocalCache;
 import com.huo.lconn.cache.rediscache.node.MultiNodeCacheService;
 import com.huo.lconn.cache.rediscache.node.SingleNodeCacheService;
@@ -62,17 +63,6 @@ public class DelegateNodeService {
         }
     }
 
-    public String getMySelf() {
-        InetAddress addr = null;
-        try {
-            addr = InetAddress.getLocalHost();
-        } catch (UnknownHostException e) {
-            log.error("未知host异常 {}", e);
-        }
-        String ip = addr.getHostAddress().toString();
-        return ip + connectPort;
-    }
-
     public void addSingle(DelegateChannel channel, String realTopic) {
         channel.getSingleTopics().add(realTopic);
         singleNodeCacheService.addNode(realTopic, getMySelf());
@@ -116,5 +106,20 @@ public class DelegateNodeService {
         for (String realTopic : channel.getMultiTopics()) {
             multiNodeCacheService.delNode(realTopic, getMySelf());
         }
+    }
+
+    public String getMySelf() {
+        InetAddress addr = null;
+        try {
+            addr = InetAddress.getLocalHost();
+        } catch (UnknownHostException e) {
+            log.error("未知host异常 {}", e);
+        }
+        String ip = addr.getHostAddress().toString();
+        return ip + connectPort;
+    }
+
+    public boolean isMySelf(String node) {
+        return StringUtils.equals(node, getMySelf());
     }
 }

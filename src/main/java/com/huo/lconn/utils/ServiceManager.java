@@ -5,6 +5,7 @@ import com.huo.lconn.cache.rediscache.message.MessageCacheService;
 import com.huo.lconn.channel.DelegateChannelService;
 import com.huo.lconn.node.DelegateNodeService;
 import com.huo.lconn.topic.TopicService;
+import org.apache.curator.framework.CuratorFramework;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +22,8 @@ public class ServiceManager {
     public static TopicService topicService;
     public static MessageCacheService messageCacheService;
     public static BlackListService blackListService;
+    public static CuratorFramework curatorFramework;
+
 
     @Autowired
     public void setDelegateChannelService(DelegateChannelService delegateChannelService) {
@@ -45,5 +48,10 @@ public class ServiceManager {
     @Autowired
     public void setBlackListService(BlackListService blackListService) {
         ServiceManager.blackListService = blackListService;
+    }
+
+    @Autowired
+    public void setCuratorFramework(CuratorFramework curatorFramework) {
+        ServiceManager.curatorFramework = curatorFramework;
     }
 }

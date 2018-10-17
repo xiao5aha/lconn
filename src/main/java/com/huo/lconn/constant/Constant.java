@@ -10,6 +10,15 @@ import java.util.Set;
  * @CreateDate: 2018/10/11 16:27
  */
 public final class Constant {
+    public static final int DEFAULT_RPC_PORT = 7023;
+    public static final int HEART_TIME_OUT = 20;
+    public static final String ZK_PATH = "/nettypush/rpc";
+    public static final int NETTY_BACKENT_PORT = 7071;
+    public static final int NETTY_CLIENT_PORT = 7020;
+    public static final String ZK_ROOT = "/nettypush_clientServer";
+    public static final String ZK_HOST_PARENT = "/host";
+    public static final String ZK_NODE_PARENT = "/node";
+    public static final String SOCKETIO_EVENT = "data";
     public static AttributeKey<Boolean> AUTH_FLAG = AttributeKey.valueOf("AUTH_FLAG");
     public static AttributeKey<Integer> PRODUCT_CODE = AttributeKey.valueOf("PRODUCT_CODE");
     public static AttributeKey<Long> START_TIME = AttributeKey.valueOf("START_TIME");
