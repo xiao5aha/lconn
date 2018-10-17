@@ -19,6 +19,8 @@ public final class Constant {
     public static final String ZK_HOST_PARENT = "/host";
     public static final String ZK_NODE_PARENT = "/node";
     public static final String SOCKETIO_EVENT = "data";
+    public static final int NETTY_WORKER_NUM = 4;
+    public static final int OTHER_WORKER_NUM = 30;
     public static AttributeKey<Boolean> AUTH_FLAG = AttributeKey.valueOf("AUTH_FLAG");
     public static AttributeKey<Integer> PRODUCT_CODE = AttributeKey.valueOf("PRODUCT_CODE");
     public static AttributeKey<Long> START_TIME = AttributeKey.valueOf("START_TIME");
